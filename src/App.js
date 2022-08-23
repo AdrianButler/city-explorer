@@ -2,6 +2,7 @@ import {Component} from "react";
 import LocationInfo from "./components/LocationInfo";
 import axios from "axios";
 import {Button, Form} from "react-bootstrap";
+import "./App.css";
 
 class App extends Component
 {
@@ -29,12 +30,19 @@ class App extends Component
 	{
 		event.preventDefault();
 
-		let url = `https://us1.locationiq.com/v1/search?key=${process.env.REACT_APP_LOCATIONIQKEY}&q=${this.state.locationQuery}&format=json`;
+		let locationURL = `https://us1.locationiq.com/v1/search?key=${process.env.REACT_APP_LOCATIONIQKEY}&q=${this.state.locationQuery}&format=json`;
+		let mapURL = "https://maps.locationiq.com/v3/staticmap";
 		let apiData;
 		try
 		{
-			apiData = await axios.get(url);
+			apiData = await axios.get(locationURL);
 
+			let lat = apiData.data[0].lat;
+			let lon = apiData.data[0].lon;
+
+			mapURL += `?key=${process.env.REACT_APP_LOCATIONIQKEY}&center=${lat},${lon}&zoom=${14}`;
+
+			apiData.data[0].imageSrc = mapURL; // add the map png to the object of the apis first query
 
 			this.setState(
 				{
@@ -52,12 +60,22 @@ class App extends Component
 		}
 	};
 
+	preventSubmit = (event) =>
+	{
+		if (event.keyCode === 13)
+		{
+			event.preventDefault();
+			return false;
+		}
+	};
+
 	render()
 	{
 		return (
 			<>
 				<Form>
-					<Form.Control type="text" onInput={this.handleLocationQuery}/>
+					<Form.Control type="text" onInput={this.handleLocationQuery} onKeyDown={this.preventSubmit}
+					              placeholder="Enter Location"/>
 					<Button onClick={this.handleLocationSearch}>Explore</Button>
 				</Form>
 

@@ -30,15 +30,30 @@ Finish time: 3:55
 
 Actual time needed to complete: 15 min
 
+-------------
+
 Name of feature: Locations
 
 Estimate of time needed to complete: 1 hour
 
 Start time: 4
 
-Finish time: 
+Finish time: 6
 
-Actual time needed to complete: 
+Actual time needed to complete: 2 hours
+
+-----------------
+
+Name of feature: Map
+
+Estimate of time needed to complete: 1 hour
+
+Start time: 6
+
+Finish time: 7
+
+Actual time needed to complete: 1 hour
+
 
 ## Credit and Collaborations
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
