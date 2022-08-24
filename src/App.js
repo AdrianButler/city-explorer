@@ -36,27 +36,53 @@ class App extends Component
 		try
 		{
 			apiData = await axios.get(locationURL);
-			console.log(apiData);
+			apiData = apiData.data[0];
 
-			let lat = apiData.data[0].lat;
-			let lon = apiData.data[0].lon;
+			let lat = apiData.lat;
+			let lon = apiData.lon;
 
 			mapURL += `?key=${process.env.REACT_APP_LOCATIONIQKEY}&center=${lat},${lon}&zoom=${14}`;
 
-			apiData.data[0].imageSrc = mapURL; // add the map png to the object of the apis first query
+			apiData.imageSrc = mapURL; // add the map png to the object of the apis first query
+
+			// Custom api request
+
+
+			let locationName = apiData.display_name;
+			if (locationName.includes(","))
+			{
+				locationName = locationName.substring(0, locationName.indexOf(','));
+			}
+
+			let customAPIURL =`${process.env.REACT_APP_SERVER}/weather?searchQuery=${locationName}`;
+			let customAPIResponse = await axios.get(customAPIURL);
+
+			apiData.weather = customAPIResponse.data;
+
+			console.log(apiData.weather);
 
 			this.setState(
 				{
-					apiData: apiData.data[0],
+					apiData: apiData,
 					apiErrorMessage: null
 				});
 
 		} catch (exception)
 		{
+			let errorMessage;
+			if (exception.config.url.includes(process.env.REACT_APP_SERVER))
+			{
+				errorMessage = "Custom API failed";
+			}
+			else
+			{
+				errorMessage = exception.message;
+			}
+
 			this.setState(
 				{
 					apiData: null,
-					apiErrorMessage: exception.message
+					apiErrorMessage: errorMessage
 				});
 		}
 	};
