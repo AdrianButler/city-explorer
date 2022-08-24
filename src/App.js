@@ -36,6 +36,7 @@ class App extends Component
 		try
 		{
 			apiData = await axios.get(locationURL);
+			console.log(apiData);
 
 			let lat = apiData.data[0].lat;
 			let lon = apiData.data[0].lon;
