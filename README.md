@@ -12,7 +12,7 @@
 ## Architecture
 <!-- Provide a detailed description of the application design. What technologies (languages, libraries, etc) you're using, and any other relevant design information. -->
 
-![image](https://i.ibb.co/C72V6XG/whiteboard.png)
+![WRRC](https://i.ibb.co/X5qrBPK/back-end-request-response.jpg)
 
 ## Change Log
 <!-- Use this area to document the iterative changes made to your application as each feature is successfully implemented. Use time stamps. Here's an example:
