@@ -47,19 +47,27 @@ class App extends Component
 
 			// Custom api request
 
+			let customAPIURL =`${process.env.REACT_APP_SERVER}/weather?searchQuery=${apiData.lat},${apiData.lon}`;
+			let customAPIResponse = await axios.get(customAPIURL);
+
+			apiData.weather = customAPIResponse.data;
+
 
 			let locationName = apiData.display_name;
+
 			if (locationName.includes(","))
 			{
 				locationName = locationName.substring(0, locationName.indexOf(','));
 			}
 
-			let customAPIURL =`${process.env.REACT_APP_SERVER}/weather?searchQuery=${locationName}`;
-			let customAPIResponse = await axios.get(customAPIURL);
+			// movie api request
 
-			apiData.weather = customAPIResponse.data;
+			let movieAPIURL = `${process.env.REACT_APP_SERVER}/movies?searchQuery=${locationName}`;
 
-			console.log(apiData.weather);
+			let movieAPIResponse = (await axios.get(movieAPIURL)).data;
+
+			apiData.movies = movieAPIResponse;
+			console.log(apiData.movies);
 
 			this.setState(
 				{

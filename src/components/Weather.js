@@ -13,7 +13,7 @@ class Weather extends React.Component
 						this.props.forecasts.map((value) =>
 						{
 						    return (
-								<Tab title={value.date} eventKey={value.date} className="text-white">
+								<Tab title={value.date} eventKey={value.date} className="text-white" key={value.date}>
 									<p>{value.description}</p>
 								</Tab>
 
