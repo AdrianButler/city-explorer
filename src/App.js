@@ -67,7 +67,6 @@ class App extends Component
 			let movieAPIResponse = (await axios.get(movieAPIURL)).data;
 
 			apiData.movies = movieAPIResponse;
-			console.log(apiData.movies);
 
 			this.setState(
 				{

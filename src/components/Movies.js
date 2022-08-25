@@ -1,5 +1,6 @@
 import React from "react";
 import {Carousel} from "react-bootstrap";
+import Movie from "./Movie";
 
 export class Movies extends React.Component
 {
@@ -12,13 +13,7 @@ export class Movies extends React.Component
 					{
 					   return (
 						   <Carousel.Item key={index}>
-							   <img
-								   className="d-block w-100" src={movie.imageURL}
-								   alt={movie.title}/>
-							   <Carousel.Caption>
-								   <h3>{movie.title}</h3>
-								   <p>{movie.overview}</p>
-							   </Carousel.Caption>
+						   <Movie key={index} movie={movie}/>
 						   </Carousel.Item>
 					   )
 					})

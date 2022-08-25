@@ -1,5 +1,6 @@
 import React from 'react';
 import {Card, Tab, Tabs} from "react-bootstrap";
+import WeatherDay from "./WeatherDay";
 
 class Weather extends React.Component
 {
@@ -12,12 +13,10 @@ class Weather extends React.Component
 					{
 						this.props.forecasts.map((value) =>
 						{
-						    return (
+							return (
 								<Tab title={value.date} eventKey={value.date} className="text-white" key={value.date}>
-									<p>{value.description}</p>
-								</Tab>
-
-						    )
+									<WeatherDay description={value.description}/>
+								</Tab>);
 						})
 					}
 				</Tabs>
