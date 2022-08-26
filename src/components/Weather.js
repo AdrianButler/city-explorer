@@ -15,7 +15,7 @@ class Weather extends React.Component
 						{
 							return (
 								<Tab title={value.date} eventKey={value.date} className="text-white" key={value.date}>
-									<WeatherDay description={value.description}/>
+									<WeatherDay date={value.date} description={value.description}/>
 								</Tab>);
 						})
 					}

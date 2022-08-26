@@ -12,9 +12,7 @@ export class Movies extends React.Component
 					this.props.movies.map((movie, index) =>
 					{
 					   return (
-						   <Carousel.Item key={index}>
 						   <Movie key={index} movie={movie}/>
-						   </Carousel.Item>
 					   )
 					})
 				}
